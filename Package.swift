@@ -95,22 +95,23 @@ if let pod_archive_path = ProcessInfo.processInfo.environment["ORT_POD_LOCAL_PAT
     package.targets.append(Target.binaryTarget(name: "onnxruntime", path: pod_archive_path))
 
 } else {
-    // ORT release
+    // ORT release — mirrored to GitHub for Xcode Cloud compatibility
+    // (Xcode Cloud cannot resolve download.onnxruntime.ai / Azure CDN)
     package.targets.append(
        Target.binaryTarget(name: "onnxruntime",
-                           url: "https://download.onnxruntime.ai/pod-archive-onnxruntime-c-1.23.0.zip",
+                           url: "https://github.com/Synthetic-Insights-LLC/onnxruntime-swift-package-manager/releases/download/v1.20.1/pod-archive-onnxruntime-c-1.20.0.zip",
                            // SHA256 checksum
-                           checksum: "756a78e0168f29840bc614b43aeb03e63673f44022e0221d21698a2c8ed747ef")
+                           checksum: "50891a8aadd17d4811acb05ed151ba6c394129bb3ab14e843b0fc83a48d450ff")
     )
 }
 
 if let ext_pod_archive_path = ProcessInfo.processInfo.environment["ORT_EXTENSIONS_POD_LOCAL_PATH"] {
     package.targets.append(Target.binaryTarget(name: "onnxruntime_extensions", path: ext_pod_archive_path))
 } else {
-    // ORT Extensions release
+    // ORT Extensions release — mirrored to GitHub for Xcode Cloud compatibility
     package.targets.append(
         Target.binaryTarget(name: "onnxruntime_extensions",
-                            url: "https://download.onnxruntime.ai/pod-archive-onnxruntime-extensions-c-0.13.0.zip",
+                            url: "https://github.com/Synthetic-Insights-LLC/onnxruntime-swift-package-manager/releases/download/v1.20.1/pod-archive-onnxruntime-extensions-c-0.13.0.zip",
                             // SHA256 checksum
                             checksum: "346522d1171d4c99cb0908fa8e4e9330a4a6aad39cd83ce36eb654437b33e6b5")
     )
